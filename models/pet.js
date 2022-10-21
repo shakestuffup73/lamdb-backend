@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-const emergencyContact = new Schema({
+const emergencyContactSchema = new Schema({
   name: String,
   phoneNumber: String,
   email: String,
@@ -27,7 +27,8 @@ const petSchema = new Schema({
   behaviorNotes: String,
   allergies: String,
   microchipLink: String,
-  emergencyContact: [emergencyContact]
+  emergencyContact: [emergencyContact],
+  vet: { type: Schema.Types.ObjectId, ref: 'Vet' }
 },{
   timestamps: true,
 })
