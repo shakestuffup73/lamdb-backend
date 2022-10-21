@@ -2,6 +2,11 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+const pdfSchema = new Schema ({
+  date: String,
+  details: String,
+})
+
 const vetSchema = new Schema({
   name: String,
   contact: String,
@@ -13,6 +18,7 @@ const vetSchema = new Schema({
   cost: Number,
   appointment: String,
   rabies: String,
+  pdf: [pdfSchema]
 },{
   timestamps: true,
 })
