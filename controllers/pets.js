@@ -1,4 +1,4 @@
-import { Pet } from "../models/pet"
+import { Pet } from "../models/pet.js"
 import { v2 as cloudinary } from 'cloudinary'
 
 function addPhoto(req, res) {
