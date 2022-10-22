@@ -9,7 +9,7 @@ const router = Router()
 
 // ========= Protected Routes ========= 
 router.use(decodeUserFromToken)
-// router.get('/', checkAuth, vetsCtrl.index)
+router.get('/', checkAuth, vetsCtrl.indexVet)
 router.post('/', checkAuth, vetsCtrl.createVet)
 // router.get('/:id', checkAuth, vetsCtrl.show)
 // router.put('/:id', checkAuth, vetsCtrl.update)
