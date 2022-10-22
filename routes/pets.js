@@ -12,7 +12,7 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, petsCtrl.index)
 router.post('/', checkAuth, petsCtrl.create)
 router.get('/:id', checkAuth, petsCtrl.show)
-// router.put('/:id', checkAuth, petsCtrl.update)
+router.put('/:id', checkAuth, petsCtrl.update)
 // router.delete('/:id', checkAuth, petsCtrl.delete)
 
 

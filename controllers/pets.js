@@ -61,9 +61,23 @@ const show = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  try {
+    const pet = await Pet.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true}
+    ) .populate('owner')
+    res.status(200).json(pet)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   addPhoto,
   index,
   show,
+  update,
 }
