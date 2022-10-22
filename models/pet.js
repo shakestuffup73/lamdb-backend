@@ -28,7 +28,8 @@ const petSchema = new Schema({
   allergies: String,
   microchipLink: String,
   emergencyContact: [emergencyContactSchema],
-  vet: { type: Schema.Types.ObjectId, ref: 'Vet' }
+  vet: { type: Schema.Types.ObjectId, ref: 'Vet' },
+  owner: { type: Schema.Types.ObjectId, ref: 'Profile' }
 },{
   timestamps: true,
 })

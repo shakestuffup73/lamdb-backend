@@ -41,7 +41,18 @@ function addPhoto(req, res) {
   })
 }
 
+const index = async (req, res) => {
+  try {
+    const pets = await Pet.find({})
+      .populate('owner')
+    res.status(200).json(pets)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
-  addPhoto
+  addPhoto,
+  index
 }
