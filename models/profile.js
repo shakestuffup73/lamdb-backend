@@ -6,6 +6,7 @@ const profileSchema = new Schema({
   name: String,
   photo: String,
   pet: { type: Schema.Types.ObjectId, ref: 'Pet' }
+  
 },{
   timestamps: true,
 })
