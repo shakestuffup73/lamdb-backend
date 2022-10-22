@@ -39,8 +39,22 @@ const showVet = async (req, res) => {
   }
 }
 
+const updateVet = async (req, res) => {
+  try {
+    const vet = await Vet.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true}
+    ) .populate('pet.petName')
+    res.status(200).json(vet)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   createVet,
   indexVet,
-  showVet
+  showVet,
+  updateVet,
 }
