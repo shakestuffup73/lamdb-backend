@@ -51,8 +51,19 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    const pet = await Pet.findById(req.params.id)
+      .populate('owner')
+    res.status(200).json(pet)
+  } catch (error) {
+    res.status(500).json(err)
+  }
+}
+
 export {
   create,
   addPhoto,
-  index
+  index,
+  show,
 }
