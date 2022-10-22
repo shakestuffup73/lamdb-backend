@@ -11,7 +11,7 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, vetsCtrl.indexVet)
 router.post('/', checkAuth, vetsCtrl.createVet)
-// router.get('/:id', checkAuth, vetsCtrl.show)
+router.get('/:id', checkAuth, vetsCtrl.showVet)
 // router.put('/:id', checkAuth, vetsCtrl.update)
 // router.delete('/:id', checkAuth, vetsCtrl.delete)
 
