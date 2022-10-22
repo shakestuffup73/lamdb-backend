@@ -74,10 +74,23 @@ const update = async (req, res) => {
   }
 }
 
+const deletePet = async (req,res) => {
+  try {
+    const pet = await Pet.findByIdAndDelete(req.params.id)
+    const profile = await Profile.findById(req.user.profile)
+    profile.pet.remove({_id: req.params.id })
+    await profile.save()
+    res.status(200).json(pet)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   addPhoto,
   index,
   show,
   update,
+  deletePet as delete,
 }
