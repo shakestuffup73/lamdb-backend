@@ -18,7 +18,8 @@ const vetSchema = new Schema({
   cost: Number,
   appointment: String,
   rabies: String,
-  pdf: [pdfSchema]
+  pdf: [pdfSchema],
+  pet: { type: Schema.Types.ObjectId, ref: 'Pet' } 
 },{
   timestamps: true,
 })
