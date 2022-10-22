@@ -27,7 +27,7 @@ const petSchema = new Schema({
   behaviorNotes: String,
   allergies: String,
   microchipLink: String,
-  emergencyContact: [emergencyContact],
+  emergencyContact: [emergencyContactSchema],
   vet: { type: Schema.Types.ObjectId, ref: 'Vet' }
 },{
   timestamps: true,

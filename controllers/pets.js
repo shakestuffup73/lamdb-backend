@@ -1,5 +1,24 @@
 import { Pet } from "../models/pet.js"
 import { v2 as cloudinary } from 'cloudinary'
+import { trueColor } from "@cloudinary/url-gen/qualifiers/colorSpace.js"
+
+const create = async (req, res) => {
+  try {
+    req.body.owner = req.user.profile
+    console.log('this is the req.user.profile', req.user.profile)
+    const pet = await Pet.create(req.body)
+    const profile = await Profile.findByIdAndUpdate(
+      req.user.profile,
+      { $push: {pets: pet}},
+      { new: true }
+    )
+    pet.owner = profile
+    res.status(201).json(pet)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
 
 function addPhoto(req, res) {
   const imageFile = req.files.photo.path
@@ -22,5 +41,6 @@ function addPhoto(req, res) {
 }
 
 export {
+  create,
   addPhoto
 }
