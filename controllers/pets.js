@@ -1,6 +1,7 @@
 import { Pet } from "../models/pet.js"
+import { Profile } from "../models/profile.js"
 import { v2 as cloudinary } from 'cloudinary'
-import { trueColor } from "@cloudinary/url-gen/qualifiers/colorSpace.js"
+// import { trueColor } from "@cloudinary/url-gen/qualifiers/colorSpace.js"
 
 const create = async (req, res) => {
   try {
