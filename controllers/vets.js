@@ -19,7 +19,18 @@ const createVet = async (req, res) => {
   }
 }
 
+const indexVet = async (req, res) => {
+  try {
+    const vets = await Vet.find({})
+      .populate('pet')
+    res.status(200).json(vets)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 
 export {
-  createVet
+  createVet,
+  indexVet,
 }
