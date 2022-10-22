@@ -52,9 +52,22 @@ const updateVet = async (req, res) => {
   }
 }
 
+const deleteVet = async (req,res) => {
+  try {
+    const vet = await Vet.findByIdAndDelete(req.params.id)
+    const pet = await Pet.findById(req.user.pet)
+    pet.vet.remove({_id: req.params.id })
+    await pet.save()
+    res.status(200).json(vet)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export {
   createVet,
   indexVet,
   showVet,
   updateVet,
+  deleteVet as delete,
 }
