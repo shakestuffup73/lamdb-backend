@@ -9,18 +9,9 @@ const emergencyContactSchema = new Schema({
 })
 
 const petSchema = new Schema({
-  petName: {
-    type: String,
-    required: true,
-  },
-  species: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: String,
-    required: true,
-  },
+  petName: String,
+  species: String,
+  color: String,
   breed: String,
   age: Number,
   weight: Number,
