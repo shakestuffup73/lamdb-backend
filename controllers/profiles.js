@@ -1,13 +1,23 @@
 import { Profile } from '../models/profile.js'
 import { v2 as cloudinary } from 'cloudinary'
 
-function index(req, res) {
-  Profile.find({})
-  .then(profiles => res.json(profiles))
-  .catch(err => {
-    console.log(err)
+// function index(req, res) {
+//   Profile.find({})
+//   .then(profiles => res.json(profiles))
+//   .catch(err => {
+//     console.log(err)
+//     res.status(500).json(err)
+//   })
+// }
+
+const show = async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.id)
+      .populate('pets')
+    res.status(200).json(profile)
+  } catch (error) {
     res.status(500).json(err)
-  })
+  }
 }
 
 function addPhoto(req, res) {
@@ -29,4 +39,4 @@ function addPhoto(req, res) {
   })
 }
 
-export { index, addPhoto }
+export { addPhoto, show }
