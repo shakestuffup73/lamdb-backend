@@ -1,21 +1,14 @@
 import { Profile } from '../models/profile.js'
 import { v2 as cloudinary } from 'cloudinary'
 
-// function index(req, res) {
-//   Profile.find({})
-//   .then(profiles => res.json(profiles))
-//   .catch(err => {
-//     console.log(err)
-//     res.status(500).json(err)
-//   })
-// }
-
 const show = async (req, res) => {
   try {
-    const profile = await Profile.findById(req.params.id)
+    const profile = await Profile.findById(req.user.profile)
       .populate('pets')
+      console.log('this is controller show profile', profile);
     res.status(200).json(profile)
   } catch (error) {
+    console.log(error);
     res.status(500).json(err)
   }
 }
