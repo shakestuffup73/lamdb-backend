@@ -4,7 +4,7 @@ import logger from 'morgan'
 import cors from 'cors'
 import formData from 'express-form-data'
 
-import { router as profilesRouter } from './routes/my-profile.js'
+import { router as profileRouter } from './routes/my-profile.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as petsRouter } from './routes/pets.js'
 import { router as vetsRouter } from './routes/vets.js'
@@ -18,7 +18,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(formData.parse())
 
-app.use('/api/my-profile', profilesRouter)
+app.use('/api/my-profile', profileRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/pets', petsRouter)
 app.use('/api/vets', vetsRouter)
