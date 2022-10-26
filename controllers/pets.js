@@ -14,9 +14,9 @@ const create = async (req, res) => {
       { new: true }
     )
     pet.owner = profile
-    const updatedProfile = await Profile.findById(req.user.profile).populate('pets')
+    // const updatedProfile = await Profile.findById(req.user.profile).populate('pets')
 
-    res.status(201).json({updatedProfile: updatedProfile, pet: pet})
+    res.status(201).json(pet)
   } catch (error) {
     console.log(error)
     res.status(500).json(error)
@@ -45,7 +45,7 @@ function addPhoto(req, res) {
 
 const index = async (req, res) => {
   try {
-    const pets = await Pet.find({})
+    const pets = await Pet.find({owner: req.user.profile})
       .populate('owner')
     res.status(200).json(pets)
   } catch (error) {
@@ -82,7 +82,7 @@ const deletePet = async (req,res) => {
     const profile = await Profile.findById(req.user.profile)
     profile.pets.remove({_id: req.params.id })
     await profile.save()
-    res.status(200).json(profile)
+    res.status(200).json(pet)
   } catch (error) {
     res.status(500).json(error)
   }
