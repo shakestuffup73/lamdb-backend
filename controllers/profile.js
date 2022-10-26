@@ -5,7 +5,7 @@ const show = async (req, res) => {
   try {
     const profile = await Profile.findById(req.user.profile)
       .populate('pets')
-      console.log('this is controller show profile', profile);
+      console.log('this is controller show profile', req.user.profile);
     res.status(200).json(profile)
   } catch (error) {
     console.log(error);
