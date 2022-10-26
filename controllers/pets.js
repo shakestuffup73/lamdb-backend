@@ -88,6 +88,36 @@ const deletePet = async (req,res) => {
   }
 }
 
+// emergency contact
+const createContact = async (req, res) => {
+  try {
+    req.body.owner = req.user.profile
+    const pet = await Pet.findById(req.params.id)
+    pet.emergencyContact.push(req.body)
+    await pet.save()
+
+    const newContact = pet.emergencyContact [pet.emergencyContact.length - 1]
+
+    res.status(201).json(newContact)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+
+const deleteContact = async (req, res) => {
+  try {
+    req.body.owner = req.user.profile
+    const pet = await Pet.findById(req.params.id)
+    pet.contact.remove(req.body)
+    await pet.save()
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+
+
 export {
   create,
   addPhoto,
@@ -95,4 +125,6 @@ export {
   show,
   update,
   deletePet as delete,
+  createContact,
+  deleteContact,
 }
