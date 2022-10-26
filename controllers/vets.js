@@ -21,7 +21,7 @@ const createVet = async (req, res) => {
 
 const indexVet = async (req, res) => {
   try {
-    const vets = await Vet.find({})
+    const vets = await Vet.find({pet: req.user.pet})
       .populate('pet')
     res.status(200).json(vets)
   } catch (error) {
