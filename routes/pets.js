@@ -11,13 +11,11 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, petsCtrl.index)
 router.post('/', checkAuth, petsCtrl.create)
+router.post('/:id/emergency-contact', checkAuth, petsCtrl.createContact)
 router.get('/:id', checkAuth, petsCtrl.show)
 router.put('/:id', checkAuth, petsCtrl.update)
 router.put('/:id/add-photo', petsCtrl.addPhoto)
 router.delete('/:id', checkAuth, petsCtrl.delete)
-
-router.post('/:id/emergency-contact', checkAuth, petsCtrl.createContact)
-
 router.delete('/:petId/emergency-contact/:emergency-contact-id', checkAuth, petsCtrl.deleteContact)
 
 
