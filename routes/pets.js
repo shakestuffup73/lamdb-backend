@@ -17,7 +17,6 @@ router.put('/:id/add-photo', petsCtrl.addPhoto)
 router.delete('/:id', checkAuth, petsCtrl.delete)
 
 router.post('/pets/:id/emergency-contact', checkAuth, petsCtrl.createContact)
-
 router.delete(':petId/emergency-contact/:emergency-contact-id', checkAuth, petsCtrl.deleteContact)
 
 
