@@ -11,8 +11,7 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/:id', checkAuth, vetsCtrl.indexVet)
 router.post('/', checkAuth, vetsCtrl.createVet)
-// router.get('/:id', checkAuth, vetsCtrl.showVet)
-router.delete('/petRecords/:id', checkAuth, vetsCtrl.delete)
+router.delete('/:id', checkAuth, vetsCtrl.delete)
 
 
 
