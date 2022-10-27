@@ -110,10 +110,12 @@ const createContact = async (req, res) => {
 
 const deleteContact = async (req, res) => {
   try {
+    console.log(req.params)
     req.body.owner = req.user.profile
-    const pet = await Pet.findById(req.params.id)
-    pet.contact.remove(req.body)
+    const pet = await Pet.findById(req.params.petId)
+    pet.emergencyContact.remove({_id:req.params.cId})
     await pet.save()
+    res.status(200).json(pet.emergencyContact)
   } catch (error) {
     res.status(500).json(error)
   }

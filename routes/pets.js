@@ -16,7 +16,7 @@ router.get('/:id', checkAuth, petsCtrl.show)
 router.put('/:id', checkAuth, petsCtrl.update)
 router.put('/:id/add-photo', petsCtrl.addPhoto)
 router.delete('/:id', checkAuth, petsCtrl.delete)
-router.delete('/:petId/emergency-contact/:emergency-contact-id', checkAuth, petsCtrl.deleteContact)
+router.delete('/:petId/emergencyContact/:cId', checkAuth, petsCtrl.deleteContact)
 
 
 export { router }
