@@ -91,6 +91,8 @@ const deletePet = async (req,res) => {
 // emergency contact
 const createContact = async (req, res) => {
   try {
+    console.log('CREATE CONTACT!!!!!!!!');
+    console.log('this is req.params.id', req.params.id);
     req.body.owner = req.user.profile
     const pet = await Pet.findById(req.params.id)
     pet.emergencyContact.push(req.body)
@@ -100,6 +102,7 @@ const createContact = async (req, res) => {
 
     res.status(201).json(newContact)
   } catch (error) {
+    console.log(error);
     res.status(500).json(error)
   }
 }
