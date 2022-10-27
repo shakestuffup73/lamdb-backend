@@ -1,5 +1,6 @@
 import { Vet } from '../models/vet.js'
 import { Pet } from '../models/pet.js'
+import { Profile } from '../models/profile.js'
 
 const createVet = async (req, res) => {
   try {
@@ -19,8 +20,10 @@ const createVet = async (req, res) => {
 
 const indexVet = async (req, res) => {
   try {
+    const pet = await Profile.find({pets: req.user.profile})
+    .populate('profile.pets')
     // find profile first (req.user.profile) then check on the profile for pet that is in profile.pets
-    const vets = await Vet.find({pet: req.user.pet}) // pass in the :id of the pet we're looking for (req._id.pet)
+    const vets = await Vet.find({pet: req._id.pet}) // pass in the :id of the pet we're looking for (req._id.pet)
       .populate('pet')
     res.status(200).json(vets)
   } catch (error) {
