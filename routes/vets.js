@@ -12,8 +12,8 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, vetsCtrl.indexVet)
 router.post('/', checkAuth, vetsCtrl.createVet)
 router.get('/:id', checkAuth, vetsCtrl.showVet)
-router.put('/:id', checkAuth, vetsCtrl.updateVet)
-router.delete('/:id', checkAuth, vetsCtrl.delete)
+// router.put('/:id', checkAuth, vetsCtrl.updateVet)
+// router.delete('/:id', checkAuth, vetsCtrl.delete)
 
 
 
