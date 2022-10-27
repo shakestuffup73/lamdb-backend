@@ -1,6 +1,5 @@
 import { Vet } from '../models/vet.js'
 import { Pet } from '../models/pet.js'
-import { Profile } from '../models/profile.js'
 
 const createVet = async (req, res) => {
   try {
@@ -22,7 +21,6 @@ const indexVet = async (req, res) => {
   try {
     const vets = await Vet.find({pet: req.params.id})
       .populate('pet')
-      console.log('this is indexVet', vets);
     res.status(200).json(vets)
   } catch (error) {
     res.status(500).json(error)

@@ -1,12 +1,10 @@
 import { Pet } from "../models/pet.js"
 import { Profile } from "../models/profile.js"
 import { v2 as cloudinary } from 'cloudinary'
-// import { trueColor } from "@cloudinary/url-gen/qualifiers/colorSpace.js"
 
 const create = async (req, res) => {
   try {
     req.body.owner = req.user.profile
-    console.log('this is the req.user.profile', req.user.profile)
     const pet = await Pet.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
@@ -14,8 +12,6 @@ const create = async (req, res) => {
       { new: true }
     )
     pet.owner = profile
-    // const updatedProfile = await Profile.findById(req.user.profile).populate('pets')
-
     res.status(201).json(pet)
   } catch (error) {
     console.log(error)
@@ -28,7 +24,6 @@ function addPhoto(req, res) {
   Pet.findById(req.params.id)
   .then(pet => {
     cloudinary.uploader.upload(imageFile, {tags: `${req.user.email}`})
-    // In an application with auth you'll use: {tags: `${req.user.email}`}
     .then(image => {
       pet.photo = image.url
       pet.save()
@@ -91,22 +86,17 @@ const deletePet = async (req,res) => {
 // emergency contact
 const createContact = async (req, res) => {
   try {
-    console.log('CREATE CONTACT!!!!!!!!');
-    console.log('this is req.params.id', req.params.id);
     req.body.owner = req.user.profile
     const pet = await Pet.findById(req.params.id)
     pet.emergencyContact.push(req.body)
     await pet.save()
-
     const newContact = pet.emergencyContact [pet.emergencyContact.length - 1]
-
     res.status(201).json(newContact)
   } catch (error) {
     console.log(error);
     res.status(500).json(error)
   }
 }
-
 
 const deleteContact = async (req, res) => {
   try {
@@ -120,8 +110,6 @@ const deleteContact = async (req, res) => {
     res.status(500).json(error)
   }
 }
-
-
 
 export {
   create,
