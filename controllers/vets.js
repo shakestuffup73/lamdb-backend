@@ -5,7 +5,7 @@ const createVet = async (req, res) => {
   try {
     const vet = await Vet.create(req.body)
     const pet = await Pet.findByIdAndUpdate(
-      req.body.vet,
+      req.body.pet,
       { $push: {vets: vet}},
       { new: true }
     )
